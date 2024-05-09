@@ -22,7 +22,7 @@ import java.nio.file.Paths;
 public final class Training {
 
     // represents number of training samples processed before the model is updated
-    private static final int BATCH_SIZE = 50;
+    private static final int BATCH_SIZE = 32;
 
     // the number of passes over the complete dataset
     private static final int EPOCHS = 4;
@@ -79,7 +79,7 @@ public final class Training {
 
     private static ImageFolder initDataset(String datasetRoot)
             throws IOException, TranslateException {
-        ImageFolder dataset = ImageFolder.builder()
+        ImageFolder dataset  = ImageFolder.builder()
                 // retrieve the data
                 .setRepositoryPath(Paths.get(datasetRoot))
                 .optMaxDepth(10)

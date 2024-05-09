@@ -12,12 +12,11 @@
 <body>
 
 <div class="container-fluid">
-    <h1>Footwear Classification</h1>
-    <p>DeepJavaLibrary (DJL) Demonstration by mosa</p>
+    <h1>Animal Classification</h1>
 
     <form>
         <div class="form-group">
-            <label for="exampleFormControlFile1">Bitte Bild hochladen (jpeg, png)</label>
+            <label for="exampleFormControlFile1">Bitte Bild von einem Tier hochladen (jpeg, png)</label>
             <input type="file" accept="image/png, image/jpeg" class="form-control-file" id="image" name="image"
                    onchange="checkFiles(this.files);">
         </div>
@@ -25,7 +24,16 @@
 
     <div id="answerPart" style="visibility: hidden;">
         <p><b>Answer:</b>
-        <div id="answer"></div>
+        <table>
+            <tr>
+                <th>Animal</th>
+                <th>Probability</th>
+            </tr>
+            <tr id="top1"></tr>
+            <tr id="top2"></tr>
+            <tr id="top3"></tr>
+        </table>
+    </div>
         </p>
 
         <p id="previewPart"><b>Analyzed Image:</b>

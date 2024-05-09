@@ -17,8 +17,8 @@ public class Models {
     public static final int NUM_OF_OUTPUT = 90;
 
     // the height and width for pre-processing of the image
-    public static final int IMAGE_HEIGHT = 100;
-    public static final int IMAGE_WIDTH = 100;
+    public static final int IMAGE_HEIGHT = 224;
+    public static final int IMAGE_WIDTH = 224;
 
     // the name of the model
     public static final String MODEL_NAME = "animalclassifier";

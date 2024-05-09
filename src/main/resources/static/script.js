@@ -35,8 +35,21 @@ function checkFiles(files) {
         response => {
             console.log(response)
             response.text().then(function (text) {
-                answer.innerHTML = text;
-            });
+                const predictions = JSON.parse(text);
+                predictions.sort((a, b) => b.probability - a.probability);
+
+                const top1 = document.getElementById('top1');
+                top1.insertCell().textContent = predictions[0].className;
+                top1.insertCell().textContent = predictions[0].probability.toFixed(4);
+
+                const top2 = document.getElementById('top2');
+                top2.insertCell().textContent = predictions[1].className;
+                top2.insertCell().textContent = predictions[1].probability.toFixed(4);
+
+                const top3 = document.getElementById('top3');
+                top3.insertCell().textContent = predictions[2].className;
+                top3.insertCell().textContent = predictions[2].probability.toFixed(4);
+            })
 
         }
     ).then(

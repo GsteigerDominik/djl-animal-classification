@@ -1,0 +1,17 @@
+Traing Ration 8,2
+Batch Size 32
+Epoche 2
+
+
+
+->
+config anpassen in djslervice
+max_request_size=100485760
+
+
+AZ Group name djl-animal-classification
+az group create --name djl-animal-classification --location switzerlandnorth
+
+az appservice plan create --name djl-animal-classification --resource-group djl-animal-classification --sku F1 --is-linux
+
+az webapp create --resource-group djl-animal-classification --plan djl-animal-classification --name djl-animal-classification --deployment-container-image-name dominikgsteiger/djl-animal-classification:latest
