@@ -15,3 +15,5 @@ az group create --name djl-animal-classification --location switzerlandnorth
 az appservice plan create --name djl-animal-classification --resource-group djl-animal-classification --sku F1 --is-linux
 
 az webapp create --resource-group djl-animal-classification --plan djl-animal-classification --name djl-animal-classification --deployment-container-image-name dominikgsteiger/djl-animal-classification:latest
+
+az webapp config appsettings set --resource-group djl-animal-classification --name djl-animal-classification --settings WEBSITES_PORT=8080
