@@ -3,7 +3,7 @@
 
 <head>
     <title>Image Classification</title>
-    <meta charset="utf-8" />
+    <meta charset="utf-8"/>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
           integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <script src="script.js" async></script>
@@ -17,7 +17,7 @@
 
     <form>
         <div class="form-group">
-            <label for="exampleFormControlFile1">Bitte Bild von einem Tier hochladen (jpeg, png)</label>
+            <label>Bitte Bild von einem Tier hochladen (jpeg, png)</label>
             <input type="file" accept="image/png, image/jpeg" class="form-control-file" id="image" name="image"
                    onchange="checkFiles(this.files);">
         </div>
@@ -35,11 +35,23 @@
             <tr id="top3"></tr>
         </table>
     </div>
-        </p>
 
-        <p id="previewPart"><b>Analyzed Image:</b>
-        <p><img id="preview" width="300" src="#" alt="preview" /></p>
-        </p>
+    <p id="previewPart"><b>Analyzed Image:</b>
+    <p><img id="preview" width="300" src="#" alt="preview"/></p>
+</div>
+
+<div class="container-fluid">
+    <h1>Animal Captcha</h1>
+    <br>
+    <div>Which animal should the ai detect:</div>
+    <select id="animalSelect"></select>
+
+    <h1>Upload Images</h1>
+    <br>
+    <input type="file" id="imageUpload" accept="image/*" multiple>
+
+    <div class="image-grid" id="imageGrid">
+        <!-- Placeholder for uploaded images -->
     </div>
 </div>
 

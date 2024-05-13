@@ -7,7 +7,7 @@ body {
 
 .container-fluid {
     max-width: 800px;
-    margin: 0 auto;
+    margin-bottom: 20px;
     padding: 20px;
     background-color: #fff;
     border-radius: 5px;
@@ -79,4 +79,19 @@ th {
     #preview {
         width: 100%;
     }
+}
+
+.image-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+}
+
+.image-grid img {
+    width: 100%; /* Ensure images take full width of their container */
+    height: 100px; /* Fixed height for consistent image size */
+    object-fit: cover; /* Maintain aspect ratio and cover the container */
+    border-radius: 5px;
+    cursor: pointer;
+    transition: transform 0.2s ease-in-out;
 }
