@@ -97,7 +97,7 @@ function uploadFiles(files) {
                         img.src = e.target.result;
                         img.alt = theFile.name;
                         if (isAnimalThatIsSearched) {
-                            img.style.setProperty('border', '#90ee90 6px outset');
+                            img.style.setProperty('border', '#E32636 6px outset');
                         }
                         imageGrid.appendChild(img);
                     };
