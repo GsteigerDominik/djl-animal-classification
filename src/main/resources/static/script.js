@@ -1,25 +1,23 @@
-function checkFiles(files) {
+function uploadFile(files) {
 
-    if (files.length != 1) {
+    if (files.length !== 1) {
         alert("Bitte genau eine Datei hochladen.")
         return;
     }
 
-    const fileSize = files[0].size / 1024 / 1024; // in MiB
+    const fileSize = files[0].size / 1024 / 1024;
     if (fileSize > 10) {
         alert("Datei zu gross (max. 10Mb)");
         return;
     }
 
-    answerPart.style.visibility = "visible";
     const file = files[0];
 
-    // Preview
     if (file) {
         preview.src = URL.createObjectURL(files[0])
+        preview.style.visibility = "visible";
     }
 
-    // Upload
     const formData = new FormData();
     for (const name in files) {
         formData.append("image", files[name]);
@@ -46,6 +44,7 @@ function checkFiles(files) {
                 const top3 = document.getElementById('top3');
                 top3.insertCell().textContent = predictions[2].className;
                 top3.insertCell().textContent = predictions[2].probability.toFixed(4);
+                answerPart.style.visibility = "visible";
             })
 
         }
@@ -55,8 +54,7 @@ function checkFiles(files) {
 
 }
 
-function handleFileUpload(event) {
-    const files = event.target.files;
+function uploadFiles(files) {
     const animalSelect = document.getElementById('animalSelect');
     const animalToSearch = animalSelect.options[animalSelect.selectedIndex].text;
 
@@ -70,7 +68,7 @@ function handleFileUpload(event) {
     // Loop through selected files
     for (let i = 0; i < Math.min(files.length, 9); i++) {
         const file = files[i];
-        let isAnimalThatIsSearched= false
+        let isAnimalThatIsSearched = false
         // Ensure the file is an image
         if (!file.type.startsWith('image/')) {
             continue;
@@ -86,43 +84,34 @@ function handleFileUpload(event) {
             response => {
                 response.text().then(function (text) {
                     if (text.includes(animalToSearch.toLowerCase())) {
-                        isAnimalThatIsSearched=true
+                        isAnimalThatIsSearched = true
                     }
                 });
 
 
-        const reader = new FileReader();
+                const reader = new FileReader();
 
-        // Closure to capture the file information
-        reader.onload = (function (theFile) {
-            return function (e) {
-                // Create image element
-                const img = document.createElement('img');
-                img.src = e.target.result;
-                img.alt = theFile.name;
-                if(isAnimalThatIsSearched){
-                    img.style.setProperty('border', '#90ee90 6px outset');
-1                }
+                reader.onload = (function (theFile) {
+                    return function (e) {
+                        const img = document.createElement('img');
+                        img.src = e.target.result;
+                        img.alt = theFile.name;
+                        if (isAnimalThatIsSearched) {
+                            img.style.setProperty('border', '#90ee90 6px outset');
+                        }
+                        imageGrid.appendChild(img);
+                    };
+                })(file);
 
-                // Append image to grid
-                imageGrid.appendChild(img);
-            };
-        })(file);
-
-        // Read image file as a data URL
-        reader.readAsDataURL(file);
+                reader.readAsDataURL(file);
             }
         )
     }
 
 }
-// Attach event listener to file input
-const imageUpload = document.getElementById('imageUpload');
-imageUpload.addEventListener('change', handleFileUpload);
 
 
-
-// Function to create and populate the dropdown
+//Unsexy Vanilla way so i dont need to have 50 Options in HTML
 const animalList = [
     "Antelope", "Badger", "Bat", "Bear", "Bee", "Beetle", "Bison", "Boar", "Butterfly",
     "Cat", "Caterpillar", "Chimpanzee", "Cockroach", "Cow", "Coyote", "Crab", "Crow",
@@ -139,10 +128,9 @@ const animalList = [
 ]
 const animalSelect = document.getElementById('animalSelect');
 
-// Loop through the animalList array and create an <option> for each animal
 animalList.forEach(animal => {
     const option = document.createElement('option');
     option.textContent = animal;
-    option.value = animal.toLowerCase(); // Set the value to lowercase animal name
+    option.value = animal.toLowerCase();
     animalSelect.appendChild(option);
 });
