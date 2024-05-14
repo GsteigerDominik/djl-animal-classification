@@ -20,7 +20,6 @@ public class ClassificationControler {
 
     @PostMapping(path = "/analyze")
     public String predict(@RequestParam("image") MultipartFile image) throws Exception {
-        System.out.println(image);
         return inference.predict(image.getBytes()).toJson();
     }
 }
